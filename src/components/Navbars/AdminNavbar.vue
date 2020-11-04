@@ -1,17 +1,17 @@
 <template>
   <!-- Navbar -->
   <nav
-    class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-no-wrap md:justify-start flex items-center p-4"
+    class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-no-wrap md:justify-start flex items-center"
   >
     <div
-      class="w-full mx-auto items-center flex justify-between md:flex-no-wrap flex-wrap md:px-10 px-4"
+      class="w-full mx-auto items-center bg-indigo-500 flex justify-between md:flex-no-wrap flex-wrap md:px-10 p-4"
     >
       <!-- Brand -->
       <a
         class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
         href="javascript:void(0)"
       >
-        Hello, {user}
+        Welcome, Aleksandar
       </a>
       <!-- Form -->
       <form

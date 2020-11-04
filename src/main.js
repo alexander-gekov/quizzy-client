@@ -17,10 +17,8 @@ import Auth from "@/layouts/Auth.vue";
 
 // views for Admin layout
 
-import Dashboard from "@/views/admin/Dashboard.vue";
 import Settings from "@/views/admin/Settings.vue";
 import Tables from "@/views/admin/Tables.vue";
-import Maps from "@/views/admin/Maps.vue";
 
 // views for Auth layout
 
@@ -29,7 +27,6 @@ import Register from "@/views/auth/Register.vue";
 
 // views without layouts
 
-import Landing from "@/views/Landing.vue";
 import Profile from "@/views/Profile.vue";
 
 // routes
@@ -37,24 +34,19 @@ import Profile from "@/views/Profile.vue";
 const routes = [
   {
     path: "/",
-    redirect: "/home",
     component: Admin,
     children: [
       {
-        path: "/home",
-        component: Dashboard,
-      },
-      {
-        path: "/home/setting",
+        path: "/setting",
         component: Settings,
       },
       {
-        path: "/home/mycollection",
+        path: "/mycollection",
         component: Tables,
       },
       {
-        path: "/home/maps",
-        component: Maps,
+        path: "/maps",
+        component: Tables,
       },
     ],
   },
@@ -74,11 +66,11 @@ const routes = [
     ],
   },
   {
-    path: "/landing",
-    component: Landing,
+    path: "/profile",
+    component: Profile,
   },
   {
-    path: "/profile",
+    path: "/game/join",
     component: Profile,
   },
   {

@@ -129,53 +129,6 @@
                         </router-link>
                     </li>
 
-                    <!--          <li class="items-center">-->
-                    <!--            <router-link-->
-                    <!--              to="/admin/tables"-->
-                    <!--              v-slot="{ href, route, navigate, isActive }"-->
-                    <!--            >-->
-                    <!--              <a-->
-                    <!--                :href="href"-->
-                    <!--                @click="navigate"-->
-                    <!--                class="text-xs uppercase py-3 font-bold block"-->
-                    <!--                :class="[-->
-                    <!--                  isActive-->
-                    <!--                    ? 'text-green-500 hover:text-green-600'-->
-                    <!--                    : 'text-gray-800 hover:text-gray-600',-->
-                    <!--                ]"-->
-                    <!--              >-->
-                    <!--                <i-->
-                    <!--                  class="fas fa-table mr-2 text-sm"-->
-                    <!--                  :class="[isActive ? 'opacity-75' : 'text-gray-400']"-->
-                    <!--                ></i>-->
-                    <!--                Tables-->
-                    <!--              </a>-->
-                    <!--            </router-link>-->
-                    <!--          </li>-->
-
-                    <!--          <li class="items-center">-->
-                    <!--            <router-link-->
-                    <!--              to="/admin/maps"-->
-                    <!--              v-slot="{ href, route, navigate, isActive }"-->
-                    <!--            >-->
-                    <!--              <a-->
-                    <!--                :href="href"-->
-                    <!--                @click="navigate"-->
-                    <!--                class="text-xs uppercase py-3 font-bold block"-->
-                    <!--                :class="[-->
-                    <!--                  isActive-->
-                    <!--                    ? 'text-green-500 hover:text-green-600'-->
-                    <!--                    : 'text-gray-800 hover:text-gray-600',-->
-                    <!--                ]"-->
-                    <!--              >-->
-                    <!--                <i-->
-                    <!--                  class="fas fa-map-marked mr-2 text-sm"-->
-                    <!--                  :class="[isActive ? 'opacity-75' : 'text-gray-400']"-->
-                    <!--                ></i>-->
-                    <!--                Maps-->
-                    <!--              </a>-->
-                    <!--            </router-link>-->
-                    <!--          </li>-->
                 </ul>
 
                 <!-- Divider -->
@@ -192,7 +145,7 @@
                     <li class="items-center">
                         <router-link
                                 class="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-                                to="/home/mycollection"
+                                to="/mycollection"
                         >
                             <i class="fas fa-newspaper text-gray-400 mr-2 text-sm"></i>
                             My Collection

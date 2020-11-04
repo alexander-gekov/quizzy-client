@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve --port 8000",
-    "build": "vue-cli-service build && gulp licenses",
+    "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "build:tailwind": "tailwind build src/assets/styles/index.css -o src/assets/styles/tailwind.css",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm run build:tailwind && npm run serve"
@@ -17,8 +17,6 @@
     "axios": "^0.20.0",
     "chart.js": "2.9.3",
     "core-js": "3.6.5",
-    "gulp": "4.0.2",
-    "gulp-append-prepend": "1.0.8",
     "tailwindcss": "1.8.10",
     "vue": "2.6.12",
     "vue-router": "3.4.3",

@@ -8,7 +8,6 @@
           <div class="relative">
             <img
               alt="..."
-              :src="team2"
               class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
             />
           </div>
@@ -82,12 +81,10 @@
   </div>
 </template>
 <script>
-import team2 from "@/assets/img/team-2-800x800.jpg";
 
 export default {
   data() {
     return {
-      team2,
     };
   },
 };
