@@ -3,6 +3,7 @@
         <a
                 class="text-gray-600 block"
                 href="#"
+                name="togglerDropdown"
                 ref="btnDropdownRef"
                 v-on:click="toggleDropdown($event)"
         >
@@ -20,6 +21,7 @@
         </a>
         <div
                 ref="popoverDropdownRef"
+                name="popover"
                 class="bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
                 v-bind:class="{
         hidden: !dropdownPopoverShow,
@@ -30,27 +32,23 @@
                     href="javascript:void(0);"
                     class="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
             >
-                Action
+                My Profile
             </a>
             <a
                     href="javascript:void(0);"
                     class="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
             >
-                Another action
+                My Quizzes
             </a>
             <a
                     href="javascript:void(0);"
                     class="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
             >
-                Something else here
+                Friends
             </a>
             <div class="h-0 my-2 border border-solid border-gray-200"/>
-            <a
-                    href="javascript:void(0);"
-                    class="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
-            >
-                Seprated link
-            </a>
+            <a id="logout_cypress" href="#" class="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+                  v-if="isLoggedIn" @click.prevent="logout">Logout</a>
         </div>
     </div>
 </template>
@@ -65,6 +63,9 @@
                 dropdownPopoverShow: false,
             };
         },
+        computed : {
+            isLoggedIn : function(){ return this.$store.getters.isLoggedIn}
+        },
         methods: {
             toggleDropdown: function (event) {
                 event.preventDefault();
@@ -77,6 +78,12 @@
                     });
                 }
             },
+            logout: function () {
+                this.$store.dispatch('logout')
+                    .then(() => {
+                        this.$router.push('/login')
+                    })
+            }
         },
     };
 </script>

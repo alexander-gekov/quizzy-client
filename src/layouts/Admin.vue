@@ -16,6 +16,10 @@ import AdminNavbar from "@/components/Navbars/AdminNavbar.vue";
 import Sidebar from "@/components/Sidebar/Sidebar.vue";
 import HeaderStats from "@/components/Headers/HeaderStats.vue";
 import FooterAdmin from "@/components/Footers/FooterAdmin.vue";
+import axios from 'axios'
+
+let token = localStorage.getItem('token')
+axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 export default {
   name: "admin-layout",
   components: {

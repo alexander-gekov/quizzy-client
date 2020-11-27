@@ -11,7 +11,7 @@
         class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
         href="javascript:void(0)"
       >
-        Welcome, Aleksandar
+        Welcome, {{this.username}}
       </a>
       <!-- Form -->
       <form
@@ -31,7 +31,7 @@
         </div>
       </form>
       <!-- User -->
-      <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
+      <ul name="avatar" class="flex-col md:flex-row list-none items-center hidden md:flex">
         <user-dropdown />
       </ul>
     </div>
@@ -41,8 +41,16 @@
 
 <script>
 import UserDropdown from "@/components/Dropdowns/UserDropdown.vue";
+import axios from 'axios'
 
 export default {
+  computed: {
+    username: function(){ return localStorage.getItem('username')}
+  },
+  created() {
+    const token = localStorage.getItem('token')
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+  },
   components: {
     UserDropdown,
   },

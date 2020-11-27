@@ -6,6 +6,7 @@
   "scripts": {
     "serve": "vue-cli-service serve --port 8000",
     "build": "vue-cli-service build",
+    "e2e": "cypress open",
     "lint": "vue-cli-service lint",
     "build:tailwind": "tailwind build src/assets/styles/index.css -o src/assets/styles/tailwind.css",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm run build:tailwind && npm run serve"
@@ -27,6 +28,8 @@
     "@vue/cli-plugin-eslint": "4.5.6",
     "@vue/cli-service": "4.5.6",
     "babel-eslint": "10.1.0",
+    "chance": "^1.1.7",
+    "cypress": "^6.0.0",
     "eslint": "6.8.0",
     "eslint-plugin-vue": "6.2.2",
     "vue-template-compiler": "2.6.12"

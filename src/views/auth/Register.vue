@@ -39,10 +39,11 @@
                   class="block uppercase text-gray-700 text-xs font-bold mb-2"
                   htmlFor="grid-password"
                 >
-                  Name
+                  Username
                 </label>
                 <input
-                  type="email"
+                  type="username"
+                  v-model="username"
                   class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                   placeholder="Name"
                 />
@@ -57,6 +58,7 @@
                 </label>
                 <input
                   type="email"
+                  v-model="email"
                   class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                   placeholder="Email"
                 />
@@ -71,6 +73,7 @@
                 </label>
                 <input
                   type="password"
+                  v-model="password"
                   class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                   placeholder="Password"
                 />
@@ -96,6 +99,7 @@
                 <button
                   class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                   type="button"
+                  @click="register"
                 >
                   Create Account
                 </button>
@@ -116,7 +120,22 @@ export default {
     return {
       github,
       google,
+      username: '',
+      email: '',
+      password: ''
     };
   },
+  methods: {
+    register: function () {
+      let data = {
+        username: this.username,
+        email: this.email,
+        password: this.password
+      }
+      this.$store.dispatch('register', data)
+              .then(() => this.$router.push('/'))
+              .catch(err => console.log(err))
+    }
+  }
 };
 </script>

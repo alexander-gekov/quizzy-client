@@ -142,7 +142,7 @@
                 <!-- Navigation -->
 
                 <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-                    <li class="items-center">
+                    <li id="MyCollectionn" class="items-center">
                         <router-link
                                 class="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
                                 to="/mycollection"
