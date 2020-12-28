@@ -43,9 +43,10 @@
                 </label>
                 <input
                   type="username"
+                  data-username-input
                   v-model="username"
                   class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                  placeholder="Name"
+                  placeholder="Username"
                 />
               </div>
 
@@ -58,6 +59,7 @@
                 </label>
                 <input
                   type="email"
+                  data-email-input
                   v-model="email"
                   class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                   placeholder="Email"
@@ -73,6 +75,7 @@
                 </label>
                 <input
                   type="password"
+                  data-password-input
                   v-model="password"
                   class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                   placeholder="Password"
@@ -97,6 +100,7 @@
 
               <div class="text-center mt-6">
                 <button
+                        data-submit-input
                   class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                   type="button"
                   @click="register"

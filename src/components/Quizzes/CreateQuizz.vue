@@ -33,7 +33,6 @@
             return {
                 name: '',
                 topic: '',
-                number_of_questions: '',
             }
         },
         methods: {
@@ -41,12 +40,11 @@
                 axios.post('https://quizzy-api-v1.herokuapp.com/quizzes',{
                     name: this.name,
                     topic: this.topic,
-                    number_of_questions: this.number_of_questions
+                    user_id: localStorage.getItem("user_id")
                 }).then(response=>{
                     console.log(response.data);
                     this.name = '';
                     this.topic = '';
-                    this.number_of_questions = '';
                     this.$emit('close',response.data);
                     this.$emit('refresh',response.data);
                 })

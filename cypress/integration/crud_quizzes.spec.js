@@ -18,7 +18,7 @@ describe('Create', () => {
         cy.contains('Sign in with')
     })
 
-    it('createUser', () => {
+    it('createQuizz', () => {
 
         cy.get('input[name=username]').type(username)
         cy.get('input[name=password').type(pass)
@@ -36,4 +36,6 @@ describe('Create', () => {
 
         cy.contains(name);
     })
+
+
 })

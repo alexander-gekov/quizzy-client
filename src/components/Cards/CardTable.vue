@@ -12,14 +12,16 @@
                     >
                         My Collection
                     </h3>
-                    <button @click="toggleCreate = !toggleCreate" class="bg-indigo-500 hover:bg-indigo-300 focus:outline-none rounded-full">
+                    <button @click="toggleCreate = !toggleCreate"
+                            class="bg-indigo-500 hover:bg-indigo-300 focus:outline-none rounded-full">
                         <i v-bind:class="{'fas fa-plus-circle fa-2x':!toggleCreate, 'fas fa-minus-circle fa-2x':toggleCreate}"></i>
                     </button>
                 </div>
             </div>
         </div>
         <transition name="fade">
-            <create-quizz class="transition ease-in" @close="toggleCreate = false" @refresh="createQuiz" v-show="toggleCreate"></create-quizz>
+            <create-quizz class="transition ease-in" @close="toggleCreate = false" @refresh="createQuiz"
+                          v-show="toggleCreate"></create-quizz>
         </transition>
         <div class="block w-full overflow-x-auto">
             <!-- Projects table -->
@@ -97,21 +99,23 @@
                                 alt="..."
                         />
                         <div v-if="editQuiz === quiz.id">
-                            <input v-model="quiz.name" type="text" class="ml-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <input v-model="quiz.name" type="text"
+                                   class="ml-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
-                        <span v-if="editQuiz != quiz.id"
-                                class="ml-3 font-bold"
-                                :class="[color === 'light' ? 'text-gray-700' : 'text-white']"
+                        <router-link :to="'/quiz/' + quiz.id" v-if="editQuiz != quiz.id"
+                              class="ml-3 font-bold"
+                              :class="[color === 'light' ? 'text-gray-700' : 'text-white']"
                         >
                 {{quiz.name}}
-              </span>
+              </router-link>
                     </th>
                     <td
                             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-md whitespace-no-wrap p-4"
                     >
                         <div v-if="editQuiz === quiz.id">
                             <label>
-                                <input v-model="quiz.topic" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <input v-model="quiz.topic" type="text"
+                                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             </label>
                         </div>
                         <div v-if="editQuiz != quiz.id"> {{quiz.topic}}</div>
@@ -120,10 +124,12 @@
                             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-md whitespace-no-wrap p-4"
                     >
                         <div v-if="editQuiz === quiz.id">
-                            <input v-model="quiz.number_of_questions" type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <input v-model="quiz.number_of_questions" type="number"
+                                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                         <div v-if="editQuiz != quiz.id">
-                            {{quiz.number_of_questions}}</div>
+                            {{quiz.number_of_questions}}
+                        </div>
 
                     </td>
                     <td
@@ -136,27 +142,31 @@
                     <td
                             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-md whitespace-no-wrap p-4"
                     >
-<!--                        <div class="flex items-center">-->
-<!--                            <span class="mr-2">60%</span>-->
-<!--                            <div class="relative w-full">-->
-<!--                                <div-->
-<!--                                        class="overflow-hidden h-2 text-md flex rounded bg-red-200"-->
-<!--                                >-->
-<!--                                    <div-->
-<!--                                            style="width: 60%;"-->
-<!--                                            class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"-->
-<!--                                    ></div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <!--                        <div class="flex items-center">-->
+                        <!--                            <span class="mr-2">60%</span>-->
+                        <!--                            <div class="relative w-full">-->
+                        <!--                                <div-->
+                        <!--                                        class="overflow-hidden h-2 text-md flex rounded bg-red-200"-->
+                        <!--                                >-->
+                        <!--                                    <div-->
+                        <!--                                            style="width: 60%;"-->
+                        <!--                                            class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"-->
+                        <!--                                    ></div>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
                     </td>
                     <td
                             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-md whitespace-no-wrap p-4 text-right"
                     >
                         <div v-if="editQuiz === quiz.id">
-                            <button @click="updateQuiz(quiz)" class="button bg-indigo-400 hover:bg-indigo-500 px-4 py-2 rounded-full text-white mx-4" >Save</button>
+                            <button @click="updateQuiz(quiz)"
+                                    class="button bg-indigo-400 hover:bg-indigo-500 px-4 py-2 rounded-full text-white mx-4">
+                                Save
+                            </button>
                         </div>
-                        <table-dropdown v-else @updatedQuiz="editQuiz = quiz.id" @deletedQuiz="deleteQuiz(index)" :quiz-id="quiz.id"/>
+                        <table-dropdown v-else @updatedQuiz="editQuiz = quiz.id" @deletedQuiz="deleteQuiz(index)"
+                                        :quiz-id="quiz.id"/>
                     </td>
                 </tr>
                 </tbody>
@@ -182,24 +192,24 @@
             CreateQuizz
         },
         created() {
-            axios.get("https://quizzy-api-v1.herokuapp.com/quizzes")
+            axios.get("https://quizzy-api-v1.herokuapp.com/quizzes/user/" + localStorage.getItem("user_id"))
                 .then(response => {
                     console.log(response.data);
                     this.quizzes = response.data;
                 })
         },
         methods: {
-            createQuiz(val){
+            createQuiz(val) {
                 this.quizzes.push(val);
             },
-            deleteQuiz(index){
-                this.quizzes.splice(index,1);
+            deleteQuiz(index) {
+                this.quizzes.splice(index, 1);
             },
-            updateQuiz(quiz){
-                axios.put('https://quizzy-api-v1.herokuapp.com/quizzes/' + quiz.id,{
+            updateQuiz(quiz) {
+                axios.put('https://quizzy-api-v1.herokuapp.com/quizzes/' + quiz.id, {
                     name: quiz.name,
                     topic: quiz.topic,
-                    number_of_questions: quiz.number_of_questions
+                    user_id: localStorage.getItem("user_id")
                 }).then(this.editQuiz = null)
             },
         },
@@ -219,7 +229,9 @@
     .fade-enter-active, .fade-leave-active {
         transition: opacity .15s;
     }
-    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+    {
         opacity: 0;
     }
 </style>

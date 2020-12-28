@@ -2,9 +2,13 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Vuex from 'vuex'
 import axios from 'axios'
+import VueFormulate from '@braid/vue-formulate'
+import VTooltip from 'v-tooltip'
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "@/assets/styles/tailwind.css";
+import "@/assets/styles/formulate.css";
+
 import App from "@/App.vue";
 import Admin from "@/layouts/Admin.vue";
 import Auth from "@/layouts/Auth.vue";
@@ -13,6 +17,10 @@ import Tables from "@/views/admin/Tables.vue";
 import Login from "@/views/auth/Login.vue";
 import Register from "@/views/auth/Register.vue";
 import Profile from "@/views/Profile.vue";
+import CreateQuizz from "./views/admin/CreateQuizz";
+import QuizBuilder from "./views/admin/QuizBuilder";
+import QuizEditor from "./views/admin/QuizEditor";
+import QuestionEditor from "./views/admin/QuestionEditor";
 
 // routes
 
@@ -21,7 +29,7 @@ const routes = [
         path: "/",
         component: Admin,
         meta: {
-            requiresAuth: true
+            requiresAuth: false
         },
         children: [
             {
@@ -36,6 +44,25 @@ const routes = [
                 path: "/maps",
                 component: Tables,
             },
+            {
+                path: "/quizz/create",
+                component: CreateQuizz
+            },
+            {
+                path: "/quiz/:id/question/new",
+                component: QuestionEditor,
+                props: true
+            },
+            {
+                path: "/quiz/:id/question/:question_id",
+                component: QuestionEditor,
+                props: true
+            },
+            {
+                path: "/quiz/:id",
+                component: QuizEditor
+            }
+
         ],
     },
     {
@@ -61,6 +88,10 @@ const routes = [
         path: "/game/join",
         component: Profile,
     },
+    {
+        path: "/quizz/build",
+        component: QuizBuilder
+    },
     {path: "*", redirect: "/"},
 ];
 
@@ -70,8 +101,11 @@ Vue.config.productionTip = false;
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
+Vue.use(VueFormulate)
+Vue.use(VTooltip)
 
-const apiUrl = 'http://localhost:8080/api';
+
+const apiUrl = 'https://quizzy-api-v1.herokuapp.com/api';
 
 const store = new Vuex.Store({
     state: {
@@ -82,7 +116,8 @@ const store = new Vuex.Store({
     getters: {
         isLoggedIn: state => !!state.token,
         authStatus: state => state.status,
-        username: state => state.user.username
+        username: state => state.user.username,
+        user_id: state => state.user.id
     },
     actions: {
         login({commit}, user) {
@@ -94,6 +129,7 @@ const store = new Vuex.Store({
                         const user = resp.data
                         localStorage.setItem('token', token)
                         localStorage.setItem('username', user.username)
+                        localStorage.setItem('user_id',user.id)
                         console.log(user);
                         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
                         commit('auth_success', token, user)
@@ -110,6 +146,8 @@ const store = new Vuex.Store({
             return new Promise((resolve) => {
                 commit('logout')
                 localStorage.removeItem('token')
+                localStorage.removeItem('username')
+                localStorage.removeItem('user_id')
                 delete axios.defaults.headers.common['Authorization']
                 resolve()
                 router.push('/auth/login')
@@ -151,6 +189,7 @@ const store = new Vuex.Store({
 })
 
 const router = new VueRouter({
+    mode: 'history',
     routes,
 });
 
