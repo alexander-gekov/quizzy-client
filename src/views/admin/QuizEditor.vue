@@ -63,7 +63,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
-                        <router-link :to="'/quiz/' + quiz.id +'/question/new'" class="ml-2">Add new question</router-link>
+                        <router-link :to="'question/new?q=' + this.$route.params.id" class="ml-2">Add new question</router-link>
                     </button>
                 </div>
             </div>
@@ -84,22 +84,22 @@
                             </div>
                             <span class="text-center font-semibold self-center">Question {{index + 1}}</span>
                             <div class="flex">
-                                <button class="bg-white border rounded-lg px-4 py-2 flex hover:bg-gray-300">
+                                <router-link :to="'question/'+question.id +'/new?q=' + quiz.id" class="bg-white border rounded-lg px-4 py-2 flex hover:bg-gray-300">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                               d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
                                     </svg>
                                     <span class="ml-2">Edit</span>
-                                </button>
-                                <button v-tooltip="'Duplicate'" class="bg-white border rounded-lg p-2 mx-2 hover:bg-gray-300">
+                                </router-link>
+                                <button v-tooltip="'Duplicate'" @click="duplicate(question,index)" class="bg-white border rounded-lg p-2 mx-2 hover:bg-gray-300">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                               d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
                                     </svg>
                                 </button>
-                                <button v-tooltip="'Remove'" class="bg-white border rounded-lg p-2 group hover:bg-red-200">
+                                <button v-tooltip="'Remove'" @click="remove(id,index)" class="bg-white border rounded-lg p-2 group hover:bg-red-200">
                                     <svg class="w-6 h-6 group-hover:text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -143,171 +143,15 @@
                         <hr>
                         <div class="flex px-5 py-2 bg-gray-100 ">
                             <svg class="w-6 h-6 self-center mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <formulate-input type="select" :options="{first: question.seconds + ' secs', second: '45 secs', third: '60 secs', fourth: '2 min'}" />
+                            {{question.seconds}} seconds
                         </div>
                     </div>
                 </div>
-<!--                <div class="mt-5">-->
-<!--                    <div class="bg-gray-200 w-10/12 rounded-lg border mx-auto">-->
-<!--                        <div class="flex justify-between align-middle p-5">-->
-<!--                            <div class="flex self-center">-->
-<!--                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"-->
-<!--                                     xmlns="http://www.w3.org/2000/svg">-->
-<!--                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                                          d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>-->
-<!--                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                                          d="M9 10a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path>-->
-<!--                                </svg>-->
-<!--                                <span class="ml-2">Multiple Choice</span>-->
-<!--                            </div>-->
-<!--                            <span class="text-center font-semibold self-center">Question 2</span>-->
-<!--                            <div class="flex">-->
-<!--                                <button class="bg-white border rounded-lg px-4 py-2 flex">-->
-<!--                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"-->
-<!--                                         xmlns="http://www.w3.org/2000/svg">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                                              d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>-->
-<!--                                    </svg>-->
-<!--                                    <span class="ml-2">Edit</span>-->
-<!--                                </button>-->
-<!--                                <button class="bg-white border rounded-lg p-2 mx-2">-->
-<!--                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"-->
-<!--                                         xmlns="http://www.w3.org/2000/svg">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                                              d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>-->
-<!--                                    </svg>-->
-<!--                                </button>-->
-<!--                                <button class="bg-white border rounded-lg p-2">-->
-<!--                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"-->
-<!--                                         xmlns="http://www.w3.org/2000/svg">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>-->
-<!--                                    </svg>-->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="bg-white px-5 pt-5 pb-2 font-semibold">-->
-<!--                            What is the role of the mitochondria?-->
-<!--                        </div>-->
-<!--                        <div class="text-xs px-5 bg-white">answer choices</div>-->
-<!--                        <div class="flex-col p-5 bg-white">-->
-<!--                            <div class="grid grid-cols-2 gap-x-10 gap-y-4">-->
-<!--                                <div class="flex mr-16">-->
-<!--                                    <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>-->
-<!--                                    <span class="ml-2">Power House of Bulgaria</span>-->
-<!--                                </div>-->
-<!--                                <div class="flex">-->
-<!--                                    <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>-->
-<!--                                    <span class="ml-2">Photosynthesis</span>-->
-<!--                                </div>-->
-<!--                                <div class="flex mr-16">-->
-<!--                                    <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"-->
-<!--                                         xmlns="http://www.w3.org/2000/svg">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                                              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>-->
-<!--                                    </svg>-->
-<!--                                    <span class="ml-2">I don't know bro</span>-->
-<!--                                </div>-->
-<!--                                <div class="flex">-->
-<!--                                    <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor"-->
-<!--                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                                              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>-->
-<!--                                    </svg>-->
-<!--                                    <span class="ml-2">Power House of the cell</span>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <hr>-->
-<!--                        <div class="flex px-5 py-2 bg-gray-100">-->
-<!--                            <svg class="w-6 h-6 self-center mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>-->
-<!--                            <formulate-input type="select" :options="{first: '30 secs', second: '45 secs', third: '60 secs', fourth: '2 min'}" />-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="my-5">-->
-<!--                    <div class="bg-gray-200 w-10/12 rounded-lg border mx-auto">-->
-<!--                        <div class="flex justify-between align-middle p-5">-->
-<!--                            <div class="flex self-center">-->
-<!--                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"-->
-<!--                                     xmlns="http://www.w3.org/2000/svg">-->
-<!--                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                                          d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>-->
-<!--                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                                          d="M9 10a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path>-->
-<!--                                </svg>-->
-<!--                                <span class="ml-2">Multiple Choice</span>-->
-<!--                            </div>-->
-<!--                            <span class="text-center font-semibold self-center">Question 3</span>-->
-<!--                            <div class="flex">-->
-<!--                                <button class="bg-white border rounded-lg px-4 py-2 flex">-->
-<!--                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"-->
-<!--                                         xmlns="http://www.w3.org/2000/svg">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                                              d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>-->
-<!--                                    </svg>-->
-<!--                                    <span class="ml-2">Edit</span>-->
-<!--                                </button>-->
-<!--                                <button class="bg-white border rounded-lg p-2 mx-2">-->
-<!--                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"-->
-<!--                                         xmlns="http://www.w3.org/2000/svg">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                                              d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>-->
-<!--                                    </svg>-->
-<!--                                </button>-->
-<!--                                <button class="bg-white border rounded-lg p-2">-->
-<!--                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"-->
-<!--                                         xmlns="http://www.w3.org/2000/svg">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>-->
-<!--                                    </svg>-->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="bg-white px-5 pt-5 pb-2 font-semibold">-->
-<!--                            What is the role of the mitochondria?-->
-<!--                        </div>-->
-<!--                        <div class="text-xs px-5 bg-white">answer choices</div>-->
-<!--                        <div class="flex-col p-5 bg-white">-->
-<!--                            <div class="grid grid-cols-2 gap-x-10 gap-y-4">-->
-<!--                                <div class="flex mr-16">-->
-<!--                                    <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>-->
-<!--                                    <span class="ml-2">Power House of Bulgaria</span>-->
-<!--                                </div>-->
-<!--                                <div class="flex">-->
-<!--                                    <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>-->
-<!--                                    <span class="ml-2">Photosynthesis</span>-->
-<!--                                </div>-->
-<!--                                <div class="flex mr-16">-->
-<!--                                    <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"-->
-<!--                                         xmlns="http://www.w3.org/2000/svg">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                                              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>-->
-<!--                                    </svg>-->
-<!--                                    <span class="ml-2">I don't know bro</span>-->
-<!--                                </div>-->
-<!--                                <div class="flex">-->
-<!--                                    <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor"-->
-<!--                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                                              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>-->
-<!--                                    </svg>-->
-<!--                                    <span class="ml-2">Power House of the cell</span>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <hr>-->
-<!--                        <div class="flex px-5 py-2 bg-gray-100">-->
-<!--                            <svg class="w-6 h-6 self-center mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>-->
-<!--                            <formulate-input type="select" :options="{first: '30 secs', second: '45 secs', third: '60 secs', fourth: '2 min'}" />-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
             </div>
             <div class="flex justify-center mt-16 p-4 border-dashed border-2 mx-20">
-                <button v-tooltip="'Multiple Choice'" class="flex p-2 rounded-lg bg-orange-500 hover:bg-orange-600">
+                <router-link :to="'question/new?q=' + this.$route.params.id" v-tooltip="'Multiple Choice'" class="flex p-2 rounded-lg bg-orange-500 hover:bg-orange-600">
                     <svg class="w-8 h-8 text-orange-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path></svg>
-                </button>
+                </router-link>
                 <button v-tooltip="'Checkbox'" class="flex p-2 rounded-lg bg-green-500 hover:bg-green-600 mx-4">
                     <svg class="w-8 h-8 text-green-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </button>
@@ -326,7 +170,7 @@
         data(){
             return {
                 quiz: "",
-                questions: []
+                questions: [],
             }
         },
         created(){
@@ -337,8 +181,25 @@
             })
         },
         methods: {
-            hello() {
-                return "Hello";
+            remove(id,index){
+                this.questions.splice(index,1)
+                axios.delete("https://quizzy-api-v1.herokuapp.com/questions/" + id)
+                .then(
+                    this.$toastr('success', 'Successfully removed question', 'Success')
+                )
+            },
+            duplicate(question,index){
+                axios.post("https://quizzy-api-v1.herokuapp.com/questions/", {
+                    questionString: question.questionString,
+                    answer1: question.answer1,
+                    answer2: question.answer2,
+                    answer3: question.answer3,
+                    answer4: question.answer4,
+                    correctAnswer: question.correctAnswer,
+                    seconds: question.seconds,
+                    quiz_id: this.$route.params.id
+                })
+                this.questions.push(this.questions[index])
             }
         }
     }

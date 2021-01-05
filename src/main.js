@@ -4,10 +4,12 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import VueFormulate from '@braid/vue-formulate'
 import VTooltip from 'v-tooltip'
+import VueToastr from '@deveodk/vue-toastr'
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "@/assets/styles/tailwind.css";
 import "@/assets/styles/formulate.css";
+import '@deveodk/vue-toastr/dist/@deveodk/vue-toastr.css'
 
 import App from "@/App.vue";
 import Admin from "@/layouts/Admin.vue";
@@ -49,14 +51,14 @@ const routes = [
                 component: CreateQuizz
             },
             {
-                path: "/quiz/:id/question/new",
+                path: "quiz/question/:id/new",
                 component: QuestionEditor,
-                props: true
+                props: route => ({ quiz_id: route.query.q })
             },
             {
-                path: "/quiz/:id/question/:question_id",
+                path: "quiz/question/:id",
                 component: QuestionEditor,
-                props: true
+                props: route => ({ quiz_id: route.query.q })
             },
             {
                 path: "/quiz/:id",
@@ -103,6 +105,9 @@ Vue.use(VueRouter);
 Vue.use(Vuex);
 Vue.use(VueFormulate)
 Vue.use(VTooltip)
+Vue.use(VueToastr, {
+    defaultPosition: 'toast-top-right'
+})
 
 
 const apiUrl = 'https://quizzy-api-v1.herokuapp.com/api';
@@ -129,7 +134,7 @@ const store = new Vuex.Store({
                         const user = resp.data
                         localStorage.setItem('token', token)
                         localStorage.setItem('username', user.username)
-                        localStorage.setItem('user_id',user.id)
+                        localStorage.setItem('user_id', user.id)
                         console.log(user);
                         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
                         commit('auth_success', token, user)
