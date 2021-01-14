@@ -23,6 +23,8 @@ import CreateQuizz from "./views/admin/CreateQuizz";
 import QuizBuilder from "./views/admin/QuizBuilder";
 import QuizEditor from "./views/admin/QuizEditor";
 import QuestionEditor from "./views/admin/QuestionEditor";
+import Join from "./views/game/Join";
+import Lobby from "./views/game/Lobby";
 
 // routes
 
@@ -31,7 +33,7 @@ const routes = [
         path: "/",
         component: Admin,
         meta: {
-            requiresAuth: false
+            requiresAuth: true
         },
         children: [
             {
@@ -63,8 +65,15 @@ const routes = [
             {
                 path: "/quiz/:id",
                 component: QuizEditor
-            }
-
+            },
+            {
+                path: "/game/join",
+                component: Join
+            },
+            {
+                path: "/game/:id",
+                component: Lobby
+            },
         ],
     },
     {
@@ -85,10 +94,9 @@ const routes = [
     {
         path: "/profile",
         component: Profile,
-    },
-    {
-        path: "/game/join",
-        component: Profile,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: "/quizz/build",

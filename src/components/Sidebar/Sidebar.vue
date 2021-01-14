@@ -186,7 +186,7 @@
                     <li class="items-center">
                         <router-link
                                 class="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-                                to="/user/myprofile"
+                                to="/profile"
                         >
                             <i class="fas fa-fingerprint text-gray-400 mr-2 text-sm"></i>
                             My Account

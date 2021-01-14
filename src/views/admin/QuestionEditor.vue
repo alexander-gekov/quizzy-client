@@ -187,7 +187,7 @@
                 self.$router.back();
             },
             submit() {
-                if(this.$route.params.id !== 0){
+                if(this.$route.params.id !== 'new'){
                     axios.put("https://quizzy-api-v1.herokuapp.com/questions/" + this.$route.params.id, {
                         questionString: this.question,
                         answer1: this.answer1,

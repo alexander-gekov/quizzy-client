@@ -13,12 +13,6 @@
                 </label>
                 <input v-model="topic" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="topic" type="text" placeholder="Enter a topic">
             </div>
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="number_of_questions">
-                    Number of questions
-                </label>
-                <input v-model="number_of_questions" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="number_of_questions" type="number" placeholder="Specify number of questions">
-            </div>
             <button id="createQuizzz" @click.prevent="createQuizz" type="button" class="bg-indigo-500 px-3 py-1 text-white rounded-full hover:bg-indigo-600 focus:outline-none">Add Quizz</button>
         </form>
     </div>
