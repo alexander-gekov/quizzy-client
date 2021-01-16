@@ -11,8 +11,6 @@
 </template>
 
 <script>
-    import SockJS from 'sockjs-client';
-    import Stomp from 'webstomp-client';
     export default {
         name: "Lobby",
         data(){
@@ -22,22 +20,7 @@
             }
         },
         created(){
-            this.socket = new SockJS("http://localhost:8080/websocket/game");
-            this.stompClient = Stomp.over(this.socket);
-            this.stompClient.connect(
-                {},() => {
-                    this.connected = true;
-                    //console.log(frame);
-                    this.stompClient.subscribe("/topic/greetings", tick => {
-                        console.log(tick);
-                        this.received_messages.push(JSON.parse(tick.body).content);
-                    });
-                },
-                error => {
-                    console.log(error);
-                    this.connected = false;
-                }
-            );
+
 
         }
     }

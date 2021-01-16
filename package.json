@@ -24,6 +24,7 @@
     "tailwindcss": "1.8.10",
     "v-tooltip": "^2.0.3",
     "vue": "2.6.12",
+    "vue-paginate": "^3.6.0",
     "vue-router": "3.4.3",
     "vuex": "^3.5.1",
     "webstomp-client": "^1.2.6"

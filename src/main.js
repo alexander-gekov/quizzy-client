@@ -5,6 +5,7 @@ import axios from 'axios'
 import VueFormulate from '@braid/vue-formulate'
 import VTooltip from 'v-tooltip'
 import VueToastr from '@deveodk/vue-toastr'
+import VuePaginate from 'vue-paginate'
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "@/assets/styles/tailwind.css";
@@ -25,6 +26,7 @@ import QuizEditor from "./views/admin/QuizEditor";
 import QuestionEditor from "./views/admin/QuestionEditor";
 import Join from "./views/game/Join";
 import Lobby from "./views/game/Lobby";
+
 
 // routes
 
@@ -116,6 +118,7 @@ Vue.use(VTooltip)
 Vue.use(VueToastr, {
     defaultPosition: 'toast-top-right'
 })
+Vue.use(VuePaginate)
 
 
 const apiUrl = 'https://quizzy-api-v1.herokuapp.com/api';
