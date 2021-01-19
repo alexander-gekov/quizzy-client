@@ -22,14 +22,7 @@
         </div>
       </div>
       <p class="text-sm text-gray-500 mt-4">
-        <span class="mr-2" :class="[statPercentColor]">
-          <i
-            :class="[
-              statArrow === 'up' ? `fas fa-arrow-up` : `fas fa-arrow-down`,
-            ]"
-          ></i>
-          {{ statPercent }}%
-        </span>
+
         <span class="whitespace-no-wrap">{{ statDescripiron }}</span>
       </p>
     </div>
@@ -43,10 +36,7 @@ export default {
       type: String,
       default: "Traffic",
     },
-    statTitle: {
-      type: String,
-      default: "350,897",
-    },
+    statTitle: Number,
     statArrow: {
       default: "up",
       validator: function (value) {

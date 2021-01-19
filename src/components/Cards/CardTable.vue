@@ -1,6 +1,6 @@
 <template>
     <div
-            class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded"
+            class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded mt-20"
             :class="[color === 'light' ? 'bg-white' : 'bg-green-900 text-white']"
     >
         <div class="rounded-t mb-0 px-4 py-3 border-0">

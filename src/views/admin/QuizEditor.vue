@@ -1,7 +1,7 @@
 <template>
-    <div class="flex mx-24 overflow-hidden">
+    <div class="flex mx-24 overflow-hidden mt-32">
         <div class="bg-white rounded-lg p-10 w-1/3 mr-16 shadow-lg self-start">
-            <img class="w-full " src="https://picsum.photos/seed/picsum/800/500" alt="">
+            <img class="w-full " src="https://picsum.photos/800/500" alt="">
             <FormulateInput type="image" class="my-2"/>
             <div class="mt-4 text-2xl font-bold">{{quiz.name}}</div>
             <div class="flex mt-4 justify-around">
@@ -99,7 +99,7 @@
                                               d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
                                     </svg>
                                 </button>
-                                <button v-tooltip="'Remove'" @click="remove(id,index)" class="bg-white border rounded-lg p-2 group hover:bg-red-200">
+                                <button v-tooltip="'Remove'" @click="remove(question.id,index)" class="bg-white border rounded-lg p-2 group hover:bg-red-200">
                                     <svg class="w-6 h-6 group-hover:text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -152,12 +152,12 @@
                 <router-link :to="'question/new?q=' + this.$route.params.id" v-tooltip="'Multiple Choice'" class="flex p-2 rounded-lg bg-orange-500 hover:bg-orange-600">
                     <svg class="w-8 h-8 text-orange-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path></svg>
                 </router-link>
-                <button v-tooltip="'Checkbox'" class="flex p-2 rounded-lg bg-green-500 hover:bg-green-600 mx-4">
+                <router-link :to="'question/new?q=' + this.$route.params.id" v-tooltip="'Checkbox'" class="flex p-2 rounded-lg bg-green-500 hover:bg-green-600 mx-4">
                     <svg class="w-8 h-8 text-green-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                </button>
-                <button v-tooltip="'Open Ended'" class="flex p-2 rounded-lg bg-purple-500 hover:bg-purple-600">
+                </router-link>
+                <router-link :to="'question/new?q=' + this.$route.params.id" v-tooltip="'Open Ended'" class="flex p-2 rounded-lg bg-purple-500 hover:bg-purple-600">
                     <svg class="w-8 h-8 text-purple-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                </button>
+                </router-link>
             </div>
         </div>
     </div>

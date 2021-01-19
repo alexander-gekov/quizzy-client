@@ -14,6 +14,8 @@
                   class="w-full h-full absolute opacity-50 bg-black"
           ></span>
                 </div>
+
+
                 <div
                         class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px"
                         style="transform: translateZ(0);"
@@ -110,6 +112,8 @@
                                 </div>
                                 <formulate-input v-if="edit" v-model="user.institution" type="text"
                                                  label="Institution"></formulate-input>
+                                <header-stats :first_places="user.first_places" :games_played="user.games_played"
+                                              :points="user.points" :ranking="user.ranking"></header-stats>
                             </div>
                             <div class="mt-10 py-10 border-t border-gray-300 text-center">
                                 <div class="flex flex-wrap justify-center">
@@ -146,6 +150,7 @@
 
     import axios from 'axios';
     import UploadService from "../service/UploadFilesService";
+    import HeaderStats from "../components/Headers/HeaderStats";
 
     export default {
         data() {
@@ -157,6 +162,10 @@
                     email: "",
                     location: "",
                     bio: "",
+                    games_played: 0,
+                    points: 0,
+                    first_places: 0,
+                    ranking: 0,
                     institution: "",
                     roles: [],
                     quizzes: []
@@ -232,6 +241,7 @@
             }
         },
         components: {
+            HeaderStats,
             Navbar,
             FooterComponent,
         },

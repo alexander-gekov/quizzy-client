@@ -152,25 +152,6 @@
                         </router-link>
                     </li>
 
-                    <li class="items-center">
-                        <router-link
-                                class="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-                                to="/quizz/create"
-                        >
-                            <i class="fas fa-user-circle text-gray-400 mr-2 text-sm"></i>
-                            Create a Quizz
-                        </router-link>
-                    </li>
-
-                    <li class="items-center">
-                        <router-link
-                                class="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-                                to="/quizz/browse"
-                        >
-                            <i class="fas fa-user-circle text-gray-400 mr-2 text-sm"></i>
-                            Trending
-                        </router-link>
-                    </li>
                 </ul>
 
                 <!-- Divider -->
@@ -193,36 +174,17 @@
                         </router-link>
                     </li>
 
-                    <li class="items-center">
-                        <router-link
-                                class="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-                                to="/user/changepassword"
-                        >
-                            <i class="fas fa-clipboard-list text-gray-400 mr-2 text-sm"></i>
-                            Change password
-                        </router-link>
-                    </li>
-
-                    <li class="items-center">
-                        <router-link
-                                class="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-                                to="/user/addfriends"
-                        >
-                            <i class="fas fa-clipboard-list text-gray-400 mr-2 text-sm"></i>
-                            Add Friends
-                        </router-link>
-                    </li>
                 </ul>
                 <!-- Divider -->
                 <hr class="my-4 md:min-w-full"/>
                 <!-- Heading -->
-                <h6
+                <h6 v-if="!this.$store.getters.isLoggedIn"
                         class="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
                 >
                     Auth Layout Pages
                 </h6>
                 <!-- Navigation -->
-                <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
+                <ul v-if="!this.$store.getters.isLoggedIn" class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
                     <li class="items-center">
                         <router-link
                                 class="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"

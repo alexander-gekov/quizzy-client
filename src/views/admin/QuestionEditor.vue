@@ -1,5 +1,5 @@
 <template>
-    <div class="flex mx-4">
+    <div class="flex mx-4 mt-32">
         <div class="bg-gray-200 w-full rounded-lg border mr-10 self-start">
             <div class="flex justify-between align-middle p-5">
                 <div class="flex self-center">
@@ -23,7 +23,7 @@
                                      placeholder="Write your question here."></formulate-input>
                 </div>
                 <div class="flex bg-white p-4">
-                    <button @click="correct(answer1)" class="focus:outline-none">
+                    <button @click.prevent="correct(answer1)" class="focus:outline-none">
                         <svg class="w-10 h-10 text-gray-500 mr-5"
                              :class="{ 'text-green-500': correctAnswer1}"
                              fill="none"
@@ -37,7 +37,7 @@
                                      placeholder="Answer 1"></formulate-input>
                 </div>
                 <div class="flex bg-white p-4">
-                    <button @click="correct(answer2)" class="focus:outline-none">
+                    <button @click.prevent="correct(answer2)" class="focus:outline-none">
                         <svg class="w-10 h-10 text-gray-500 mr-5"
                              :class="{ 'text-green-500': correctAnswer === answer2 }" fill="none"
                              stroke="currentColor" viewBox="0 0 24 24"
@@ -50,7 +50,7 @@
                                      placeholder="Answer 2"></formulate-input>
                 </div>
                 <div class="flex bg-white p-4">
-                    <button @click="correct(answer3)" class="focus:outline-none">
+                    <button @click.prevent="correct(answer3)" class="focus:outline-none">
                         <svg class="w-10 h-10 text-gray-500 mr-5"
                              :class="{ 'text-green-500': correctAnswer === answer3}" fill="none"
                              stroke="currentColor" viewBox="0 0 24 24"
@@ -63,7 +63,7 @@
                                      placeholder="Answer 3"></formulate-input>
                 </div>
                 <div class="flex bg-white p-4">
-                    <button @click="correct(answer4)" class="focus:outline-none">
+                    <button @click.prevent="correct(answer4)" class="focus:outline-none">
                         <svg class="w-10 h-10 text-gray-500 mr-5"
                              :class="{ 'text-green-500': correctAnswer === answer4}" fill="none"
                              stroke="currentColor" viewBox="0 0 24 24"
